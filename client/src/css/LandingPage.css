@@ -1,0 +1,62 @@
+.fondo {
+  background-image: url("https://fondosmil.com/fondo/17041.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 100vw;
+  height: 100vh;
+  background-attachment: fixed;
+}
+
+.frase {
+  font-size: 4rem;
+  color: #ff9797;
+  font-family: "MV Boli";
+  text-align: left;
+  position: absolute;
+  left: 100px;
+  top: 10px;
+  padding-right: 30px;
+  text-shadow: 6px 8px 15px rgb(228, 192, 192);
+}
+
+.boton {
+  --glow-color: #f47c7c;
+  --glow-spread-color: #f00000;
+  --enhanced-glow-color: #feacac;
+  --btn-color: #171e2e;
+  outline: none;
+  border: 0.2em solid var(--glow-color);
+  padding: 1em 2em;
+  color: var(--glow-color);
+  font-size: 40px;
+  font-weight: bold;
+  background-color: var(--btn-color);
+  border-radius: 1em;
+  outline: none;
+  box-shadow: 0 0 1em 0.2em var(--glow-color),
+    0 0 3em 1em var(--glow-spread-color),
+    inset 0 0 0.73em 0.2em var(--glow-color);
+  text-shadow: 0 0 0.5em var(--glow-color);
+
+  transition: all 0.3s;
+  position: absolute;
+  right: 700px;
+  top: 400px;
+
+  font-family: "Verdana";
+}
+
+.boton:hover {
+  color: var(--btn-color);
+  background-color: var(--glow-color);
+  box-shadow: 0 0 1em 0.2em var(--glow-color),
+    0 0 3em 2em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+}
+
+.boton:active {
+  box-shadow: 0 0 0.6em 0.2em var(--glow-color),
+    0 0 2.5em 2em var(--glow-spread-color),
+    inset 0 0 0.5em 0.25em var(--glow-color);
+}
