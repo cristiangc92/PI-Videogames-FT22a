@@ -8,7 +8,6 @@ const getGenres = async () => {
       `https://api.rawg.io/api/genres?key=${API_KEY}`
     );
     const genresTotal = genresApi.data.results?.map((e) => e.name);
-    //const genresList = genresTotal.join(",").split(",");
     genresTotal.forEach((e) => {
       Genre.findOrCreate({
         where: { name: e },

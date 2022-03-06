@@ -1,0 +1,65 @@
+.card {
+  background-color: rgba(12, 151, 243, 0.733);
+  border-radius: 18px;
+  box-shadow: 10px 10px 5px 5px rgba(100, 100, 100, 0.418);
+  overflow: hidden;
+  margin-top: 25px;
+  height: 500px;
+  width: 430px;
+}
+
+.card:hover {
+  transform: translateY(-3%);
+}
+
+.cards_item {
+  display: flex;
+  padding: 20px;
+}
+
+a:link,
+a:visited,
+a:active {
+  text-decoration: none;
+}
+
+.nombre {
+  color: #fbfbfb;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-family: "Staatliches", sans-serif;
+  text-shadow: 2px 2px 5px rgb(0, 0, 0);
+}
+
+.imagen {
+  height: 241px;
+  width: 430px;
+}
+
+.generos {
+  color: hsl(0, 0%, 100%);
+  font-size: 1.3rem;
+  line-height: 2.1rem;
+  align-items: center;
+  font-weight: 400;
+  min-width: 10px;
+  font-family: "Red Hat Display", sans-serif;
+  margin-bottom: 5px;
+  text-shadow: 2px 2px 5px rgb(0, 0, 0);
+}
+
+.raiting {
+  color: #fffdfdf3;
+  font-family: "Red Hat Display", sans-serif;
+  font-size: 1.2rem;
+  margin-left: 30%;
+  margin-right: 30%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  line-height: 3rem;
+  text-shadow: 2px 2px 5px rgb(0, 0, 0);
+  background-color: #00a0f08f;
+  border-radius: 1rem;
+  box-shadow: 3px 3px 20px #00a2f0;
+}

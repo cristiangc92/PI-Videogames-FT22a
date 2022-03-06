@@ -1,0 +1,10 @@
+.fondoC {
+  background-image: url("https://i.pinimg.com/originals/5b/cb/1b/5bcb1be8f48b06d63795d40be58b139d.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  background-attachment: fixed;
+  overflow: auto;
+}

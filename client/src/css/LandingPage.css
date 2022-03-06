@@ -1,35 +1,32 @@
-.fondo {
-  background-image: url("https://fondosmil.com/fondo/17041.jpg");
+.fondoL {
+  background-image: url("https://cutewallpaper.org/21/mario-mushroom-wallpaper/clouds-Mario-mushrooms-One-Million-Years-B.C.-One-Up-.jpg");
   background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center;
   width: 100vw;
   height: 100vh;
-  background-attachment: fixed;
+  overflow: hidden;
 }
 
 .frase {
   font-size: 4rem;
-  color: #ff9797;
+  color: #ffffff;
   font-family: "MV Boli";
-  text-align: left;
-  position: absolute;
-  left: 100px;
-  top: 10px;
-  padding-right: 30px;
-  text-shadow: 6px 8px 15px rgb(228, 192, 192);
+  text-align: center;
+  left: 140px;
+  top: 30px;
+  text-shadow: 6px 8px 8px rgb(9, 182, 235);
 }
 
 .boton {
-  --glow-color: #f47c7c;
-  --glow-spread-color: #f00000;
-  --enhanced-glow-color: #feacac;
+  --glow-color: #7ccdf4;
+  --glow-spread-color: #00a2f0;
+  --enhanced-glow-color: #acf4fe;
   --btn-color: #171e2e;
   outline: none;
   border: 0.2em solid var(--glow-color);
   padding: 1em 2em;
   color: var(--glow-color);
-  font-size: 40px;
+  font-size: 30px;
   font-weight: bold;
   background-color: var(--btn-color);
   border-radius: 1em;
@@ -40,11 +37,25 @@
   text-shadow: 0 0 0.5em var(--glow-color);
 
   transition: all 0.3s;
-  position: absolute;
-  right: 700px;
-  top: 400px;
+  position: relative;
+  top: 300px;
+  right: 340px;
 
   font-family: "Verdana";
+}
+
+.boton::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 120%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--glow-spread-color);
+  filter: blur(1em);
+  opacity: 0.7;
+  transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6);
 }
 
 .boton:hover {
@@ -53,10 +64,4 @@
   box-shadow: 0 0 1em 0.2em var(--glow-color),
     0 0 3em 2em var(--glow-spread-color),
     inset 0 0 0.75em 0.25em var(--glow-color);
-}
-
-.boton:active {
-  box-shadow: 0 0 0.6em 0.2em var(--glow-color),
-    0 0 2.5em 2em var(--glow-spread-color),
-    inset 0 0 0.5em 0.25em var(--glow-color);
 }

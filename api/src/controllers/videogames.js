@@ -16,7 +16,7 @@ const getApiInfo = async () => {
           id: e.id,
           name: e.name,
           image: e.background_image,
-          genres: e.genres?.map((el) => el.name),
+          genres: e.genres?.map((el) => el.name), //
           released: e.released,
           rating: e.rating,
           platforms: e.platforms?.map((el) => el.platform.name),
@@ -32,7 +32,7 @@ const getApiInfo = async () => {
 
 //TRAIGO LA INFORMACION DE LA BASE DE DATOS
 const getDbInfo = async () => {
-  return await Videogame.findAll({
+  const infoDb = await Videogame.findAll({
     include: {
       model: Genre,
       attributes: ["name"],
@@ -41,6 +41,20 @@ const getDbInfo = async () => {
       },
     },
   });
+  const mapInfoDb = infoDb?.map((e) => {
+    return {
+      id: e.id,
+      name: e.name,
+      image: e.image,
+      genres: e.genres?.map((e) => e.name),
+      description: e.description,
+      released: e.released,
+      rating: e.rating,
+      plataforms: e.platforms?.map((el) => el),
+      createdInDb: e.createdInDb,
+    };
+  });
+  return mapInfoDb;
 };
 
 const getAllVideogames = async () => {
