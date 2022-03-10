@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const { Videogame, Genre } = require("../db");
+const { validate: uuidValidate } = require("uuid");
 const axios = require("axios");
 const { API_KEY } = process.env;
 
@@ -8,7 +9,7 @@ const router = Router();
 router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    if (id) {
+    if (!uuidValidate(id)) {
       const videogameId = await axios.get(
         `https://api.rawg.io/api/games/${id}?key=${API_KEY}`
       );
@@ -26,6 +27,24 @@ router.get("/:id", async (req, res) => {
       };
       videogameInfo
         ? res.status(200).send(videogameInfo)
+        : res.status(404).send("No existe el ID ingresado!!");
+    } else {
+      const videogameDb = await Videogame.findByPk(id, {
+        include: Genre,
+      });
+      const videogameIdDb = {
+        id: videogameDb.id,
+        name: videogameDb.name,
+        image: videogameDb.image,
+        genres: videogameDb.genres?.map((e) => e.name),
+        description: videogameDb.description,
+        released: videogameDb.released,
+        rating: videogameDb.rating,
+        platforms: videogameDb.platforms,
+        createdInDb: videogameDb.createdInDb,
+      };
+      videogameIdDb
+        ? res.status(200).send(videogameIdDb)
         : res.status(404).send("No existe el ID ingresado!!");
     }
   } catch (error) {

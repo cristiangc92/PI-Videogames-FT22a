@@ -95,18 +95,50 @@ export default function VideogameCreate() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(postVideogame(input));
-    alert("Videojuego creado!!");
+    if (input.name.trim() === "" || input.name.length < 1) {
+      return alert("Debe ingresar un nombre");
+    } else if (input.description.trim() === "") {
+      return alert("Descripción requerida");
+    } else if (input.released.trim() === "") {
+      return alert("Fecha de lanzamiento requerida");
+    } else if (
+      input.rating.trim() === "" ||
+      input.rating < 1 ||
+      input.rating > 10
+    ) {
+      return alert("Coloca un Puntaje del 1 al 10");
+    } else if (input.genres.length === 0) {
+      return alert("Coloca un o más Generos");
+    } else if (input.platforms.length === 0) {
+      return alert("Coloca una o más Plataformas");
+    } else {
+      dispatch(postVideogame(input));
+      alert("Videojuego creado!!");
+      setInput({
+        name: "",
+        image: "",
+        description: "",
+        released: "",
+        rating: "",
+        genres: [],
+        platforms: [],
+      });
+      document.getElementById("formulario").reset();
+    }
+  }
+
+  function handleDelete(e) {
     setInput({
-      name: "",
-      image: "",
-      description: "",
-      released: "",
-      rating: "",
-      genres: [],
-      platforms: [],
+      ...input,
+      genres: input.genres.filter((el) => el !== e),
     });
-    document.getElementById("formulario").reset();
+  }
+
+  function handleDelete2(e) {
+    setInput({
+      ...input,
+      platforms: input.platforms.filter((el) => el !== e),
+    });
   }
 
   useEffect(() => {
@@ -115,83 +147,134 @@ export default function VideogameCreate() {
 
   return (
     <div className="fondoC">
-      <Link to="/home">
-        <button>Volver</button>
-      </Link>
-      <h1>Crea tu videojuego!</h1>
-      <form id="formulario" onSubmit={(e) => handleSubmit(e)}>
-        <div>
-          <label>Nombre: </label>
-          <input
-            type="text"
-            value={input.name}
-            name="name"
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
-        <div>
-          <label>Descripcion: </label>
-          <input
-            type="text"
-            value={input.description}
-            name="description"
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
-        <div>
-          <label>Fecha de Lanzamiento: </label>
-          <input
-            type="date"
-            value={input.released}
-            name="released"
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
-        <div>
-          <label>Puntuacion: </label>
-          <input
-            type="number"
-            value={input.rating}
-            name="rating"
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
-        <div>
-          <label>Imagen: </label>
-          <input
-            type="text"
-            value={input.image}
-            name="rating"
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
+      <div className="contenedorC">
+        <h1 className="tituloC">Crea tu videojuego!</h1>
+        <form id="formulario" onSubmit={(e) => handleSubmit(e)}>
+          <div className="itemF">
+            <label className="labelF">Nombre:</label>
+            <br></br>
+            <input
+              className="inputF"
+              type="text"
+              value={input.name}
+              name="name"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <div className="itemF">
+            <label className="labelF">Descripcion: </label>
+            <br></br>
+            <input
+              className="inputF"
+              type="text"
+              value={input.description}
+              name="description"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <div className="itemF">
+            <label className="labelF">Lanzamiento:</label>
+            <br></br>
+            <input
+              className="inputF"
+              type="date"
+              value={input.released}
+              name="released"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <div className="itemF">
+            <label className="labelF">Puntuacion:</label>
+            <br></br>
+            <input
+              className="inputF"
+              type="number"
+              value={input.rating}
+              name="rating"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <div className="itemF">
+            <label className="labelF">Imagen:</label>
+            <br></br>
+            <input
+              className="inputF"
+              type="text"
+              value={input.image}
+              name="image"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
 
-        <div>
-          <select onChange={(e) => handleSelect(e)}>
-            {genres?.map((e) => (
-              <option value={e.name} key={e.id}>
-                {e.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <ul>
-          <li>{input.genres.map((e) => e + " ,")}</li>
-        </ul>
-        <div>
-          <select onChange={(e) => handleSelect2(e)}>
-            {platformsArr?.map((e) => (
-              <option value={e} key={e}>
-                {e}
-              </option>
-            ))}
-          </select>
-          <ul>
-            <li>{input.platforms.map((e) => e + " ,")}</li>
-          </ul>
-        </div>
-        <button type="submit">Crear Videojuego</button>
-      </form>
+          <div>
+            <label className="labelF">Generos:</label>
+            <br></br>
+            <select
+              className="inputF"
+              defaultValue="Seleccionar"
+              onChange={(e) => handleSelect(e)}
+            >
+              <option disabled>Seleccionar</option>
+              {genres?.map((e) => (
+                <option value={e.name} key={e.id}>
+                  {e.name}
+                </option>
+              ))}
+            </select>
+
+            <ul className="ul">
+              <li className="listaGP">
+                {input.genres.map((e) => (
+                  <div className="divGP" key={e}>
+                    {e + " "}
+                    <button type="button" onClick={() => handleDelete(e)}>
+                      X
+                    </button>
+                  </div>
+                ))}
+              </li>
+            </ul>
+          </div>
+          <div className="itemF">
+            <label className="labelF">Plataformas:</label>
+            <br></br>
+            <select
+              className="inputF"
+              defaultValue="Seleccionar"
+              onChange={(e) => handleSelect2(e)}
+            >
+              <option disabled>Seleccionar</option>
+              {platformsArr?.map((e) => (
+                <option value={e} key={e}>
+                  {e}
+                </option>
+              ))}
+            </select>
+            <ul className="ul">
+              <li className="listaGP">
+                {input.platforms.map((e) => (
+                  <div className="divGP" key={e}>
+                    {e + " "}
+                    <button type="button" onClick={() => handleDelete2(e)}>
+                      X
+                    </button>
+                  </div>
+                ))}
+              </li>
+            </ul>
+          </div>
+          <div>
+            <button className="botonCr" type="submit">
+              Crear Videojuego 🎮
+            </button>
+          </div>
+          <div>
+            <Link to="/home">
+              <button className="botonV">◀ Volver</button>
+            </Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../css/Paginado.css";
 
 export default function Paginado({
@@ -11,6 +11,7 @@ export default function Paginado({
   for (let i = 0; i < Math.ceil(allVideogames / videogamesPerPage); i++) {
     pageNumbers.push(i + 1);
   }
+
   //Este componente va a renderizar los numeritos en si
   return (
     <nav>

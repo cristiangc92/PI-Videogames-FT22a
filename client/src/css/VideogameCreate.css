@@ -1,5 +1,5 @@
 .fondoC {
-  background-image: url("https://i.pinimg.com/originals/5b/cb/1b/5bcb1be8f48b06d63795d40be58b139d.jpg");
+  background-image: url("https://wallpapertops.com/walldb/original/4/5/e/155091.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -7,4 +7,92 @@
   height: 100vh;
   background-attachment: fixed;
   overflow: auto;
+}
+
+.contenedorC {
+  background-color: rgba(12, 151, 243, 0.733);
+  height: 720px;
+  width: 700px;
+  border-radius: 18px;
+  margin-top: 10px;
+  margin-left: 450px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tituloC {
+  font-family: "Staatliches", sans-serif;
+  text-shadow: 2px 2px 5px rgb(0, 0, 0);
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.itemF {
+  margin-bottom: 2%;
+}
+
+.labelF {
+  font-family: "Staatliches", sans-serif;
+  letter-spacing: 5px;
+  color: #fff;
+  font-size: 1.3em;
+  text-shadow: 2px 2px 5px rgb(0, 0, 0);
+}
+
+.inputF {
+  height: 25px;
+  width: 400px;
+  border-radius: 10px;
+  border-color: #000000;
+  background-color: rgba(255, 255, 255, 0.945);
+  font-size: 16px;
+  font-family: "Red Hat Display", sans-serif;
+  box-shadow: 1px 1px 18px #00a2f0;
+}
+
+.listaGP {
+  display: inline-flex;
+}
+
+.divGP {
+  font-family: "Red Hat Display", sans-serif;
+}
+
+.botonCr {
+  height: 30px;
+  width: 200px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #00a2f0;
+  background-color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+  font-family: "Red Hat Display", sans-serif;
+}
+
+.botonCr:hover {
+  background-color: #7ccdf4;
+  color: #fff;
+}
+
+.botonV {
+  margin-top: 20px;
+  height: 30px;
+  width: 200px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #00a2f0;
+  background-color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+  font-family: "Red Hat Display", sans-serif;
+}
+
+.botonV:hover {
+  background-color: #7ccdf4;
+  color: #fff;
 }

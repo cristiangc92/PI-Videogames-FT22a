@@ -13,6 +13,7 @@
   display: flex;
   justify-content: space-around;
   background-color: cornflowerblue;
+  background-attachment: fixed;
 }
 
 .titulo {
@@ -77,6 +78,7 @@
   background-color: #e7edf088;
   border-radius: 30px;
   box-shadow: 1px 1px 15px #00000080;
+  cursor: pointer;
 }
 
 option {
@@ -88,4 +90,18 @@ option {
   justify-content: space-evenly;
   flex-wrap: wrap;
   text-decoration: none;
+}
+
+.loading {
+  margin-top: 200px;
+  width: 362px;
+  height: 80px;
+}
+
+.loadingT {
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }

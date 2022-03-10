@@ -3,6 +3,7 @@ const initialState = {
   videogames: [],
   allVideogames: [],
   genres: [],
+  detail: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -28,16 +29,14 @@ function rootReducer(state = initialState, action) {
 
     case "FILTER_CREATED":
       const allVideogames2 = state.allVideogames;
-      console.log(allVideogames2);
-      const createdFilter2 =
+      const createdFilter =
         action.payload === "created"
           ? allVideogames2.filter((el) => el.createdInDb === true)
           : allVideogames2.filter((el) => el.createdInDb !== true);
-      console.log(createdFilter2);
       return {
         ...state,
         videogames:
-          action.payload === "All" ? state.allVideogames : createdFilter2,
+          action.payload === "All" ? state.allVideogames : createdFilter,
       };
 
     case "ORDER_BY_NAME":
@@ -107,6 +106,12 @@ function rootReducer(state = initialState, action) {
     case "POST_VIDEOGAME":
       return {
         ...state,
+      };
+
+    case "GET_DETAIL":
+      return {
+        ...state,
+        detail: action.payload,
       };
 
     default:

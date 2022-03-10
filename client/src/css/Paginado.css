@@ -12,15 +12,15 @@
 }
 
 .botonPaginado {
-  font-family: "Staatliches";
+  font-family: "Staatliches", sans-serif;
+  font-weight: bold;
   font-size: 18px;
-
   color: #ffffff;
   background-color: #00a2f0;
   border: none;
   border-radius: 2px;
   padding: 4px 13px;
   margin: 10px 10px;
-  box-shadow: 2px 2px 15px #00a2f0;
+  box-shadow: 2px 2px 15px #00aaff;
   text-shadow: 1px 1px 1px rgb(0, 0, 0);
 }

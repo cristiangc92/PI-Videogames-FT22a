@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import Card from "./Card";
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
+import loading from "../css/loading-35.gif";
 import "../css/Home.css";
 
 export default function Home() {
@@ -62,14 +63,14 @@ export default function Home() {
     e.preventDefault();
     dispatch(orderByName(e.target.value));
     setCurrentPage(1);
-    setOrden(`Ordenado ${e.target.value}`);
+    setOrden(e.target.value);
   }
 
   function handleSort2(e) {
     e.preventDefault();
     dispatch(orderByRating(e.target.value));
     setCurrentPage(1);
-    setOrden(`Ordenado ${e.target.value}`);
+    setOrden(e.target.value);
   }
 
   return (
@@ -157,21 +158,38 @@ export default function Home() {
         <SearchBar />
 
         <div className="card_contenedor">
-          {currentVideogames?.map((e) => {
-            return (
-              <div key={e.id}>
-                <Link to={"/home/" + e.id}>
-                  <Card
-                    name={e.name}
-                    image={e.image}
-                    genres={e.genres}
-                    rating={e.rating}
-                  />
-                </Link>
-              </div>
-            );
-          })}
+          {currentVideogames.length > 0 ? (
+            currentVideogames.map((e) => {
+              return (
+                <div key={e.id}>
+                  <Link to={"/home/" + e.id}>
+                    <Card
+                      name={e.name}
+                      image={e.image}
+                      genres={e.genres}
+                      rating={e.rating}
+                    />
+                  </Link>
+                </div>
+              );
+            })
+          ) : (
+            <div>
+              <img
+                src={loading}
+                className="loading"
+                alt="loading please wait"
+              />
+              <br />
+              <h1 className="loadingT">Loading...</h1>
+            </div>
+          )}
         </div>
+        <Paginado
+          videogamesPerPage={videogamesPerPage}
+          allVideogames={allVideogames.length}
+          paginado={paginado}
+        />
       </div>
     </div>
   );
