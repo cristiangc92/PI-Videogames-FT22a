@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import Card from "./Card";
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
-import loading from "../css/loading-35.gif";
+import loadingBar from "../css/loading-35.gif";
 import "../css/Home.css";
 
 export default function Home() {
@@ -36,11 +36,18 @@ export default function Home() {
     setCurrentPage(pageNumber);
   };
 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
   //Voy a traer del estado los videojuegos cuando el componente se monta.
   //Me va llenando el estado cuando se monta el componente.
   //Esto es un componentDidMount
   useEffect(() => {
-    dispatch(getVideogames());
+    dispatch(getVideogames())
+      .then((r) => {
+        setLoading(false);
+      })
+      .catch((error) => setError(error.message));
   }, [dispatch]);
 
   function handleClick(e) {
@@ -71,6 +78,24 @@ export default function Home() {
     dispatch(orderByRating(e.target.value));
     setCurrentPage(1);
     setOrden(e.target.value);
+  }
+
+  if (error) {
+    return (
+      <div>
+        <h1>{error}</h1>
+      </div>
+    );
+  }
+
+  if (loading) {
+    return (
+      <div className="fondoH">
+        <img src={loadingBar} className="loading" alt="loading please wait" />
+        <br />
+        <h1 className="loadingT">Loading...</h1>
+      </div>
+    );
   }
 
   return (
@@ -175,16 +200,11 @@ export default function Home() {
             })
           ) : (
             <div>
-              <img
-                src={loading}
-                className="loading"
-                alt="loading please wait"
-              />
-              <br />
-              <h1 className="loadingT">Loading...</h1>
+              <h1 className="error">ERROR 404! No hay resultados.</h1>
             </div>
           )}
         </div>
+
         <Paginado
           videogamesPerPage={videogamesPerPage}
           allVideogames={allVideogames.length}

@@ -14,6 +14,7 @@ export default function SearchBar() {
   }
 
   function handleSubmit(e) {
+    e.preventDefault();
     if (!name) {
       return alert("Debe ingresar un nombre");
     } else {

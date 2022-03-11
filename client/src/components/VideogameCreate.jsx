@@ -101,6 +101,8 @@ export default function VideogameCreate() {
       return alert("Descripción requerida");
     } else if (input.released.trim() === "") {
       return alert("Fecha de lanzamiento requerida");
+    } else if (input.released < "1951-05-03") {
+      return alert("Fecha no puede ser menor a 03/05/1951");
     } else if (
       input.rating.trim() === "" ||
       input.rating < 1 ||

@@ -39,11 +39,11 @@ export function orderByRating(payload) {
   };
 }
 
-export function getNameVideogames(name) {
+export function getNameVideogames(payload) {
   return async function (dispatch) {
     try {
       var json = await axios.get(
-        "http://localhost:3001/videogames?name=" + name
+        "http://localhost:3001/videogames?name=" + payload
       );
       return dispatch({
         type: "GET_NAME_VIDEOGAMES",
@@ -51,16 +51,20 @@ export function getNameVideogames(name) {
       });
     } catch (error) {
       console.log(error);
+      return dispatch({
+        type: "GET_NAME_VIDEOGAMES",
+        payload: [],
+      });
     }
   };
 }
 
 export function getGenres() {
   return async function (dispatch) {
-    const info = await axios.get("http://localhost:3001/genres");
+    const json = await axios.get("http://localhost:3001/genres");
     return dispatch({
       type: "GET_GENRES",
-      payload: info.data,
+      payload: json.data,
     });
   };
 }

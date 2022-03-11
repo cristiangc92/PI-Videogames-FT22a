@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import "../css/Paginado.css";
 
 export default function Paginado({
