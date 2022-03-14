@@ -82,7 +82,7 @@ router.post("/", async (req, res) => {
     });
 
     videogameCreated.addGenre(genresDb);
-    res.send("Videojuego creado con exito!!");
+    res.status(200).send("Videojuego creado con exito!!");
   } catch (error) {
     console.log(error);
   }

@@ -44,7 +44,7 @@ export default function Home() {
   //Esto es un componentDidMount
   useEffect(() => {
     dispatch(getVideogames())
-      .then((r) => {
+      .then((response) => {
         setLoading(false);
       })
       .catch((error) => setError(error.message));
