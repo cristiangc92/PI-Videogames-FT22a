@@ -2,34 +2,48 @@ const { Videogame, conn } = require("../../src/db.js");
 const { expect } = require("chai");
 
 const vgCompl = {
+  id: "7bd46617-d105-457b-a88c-66c344597298",
+  name: "Cristian GAME",
+  description: "Descripcion de ejemplo",
+  platforms: ["PC", "Android"],
+};
+const vgId = {
+  id: null,
   name: "Cristian GAME",
   description: "Descripcion de ejemplo",
   platforms: ["PC", "Android"],
 };
 const vgName = {
+  id: "7bd46617-d105-457b-a88c-66c344597298",
   name: null,
   description: "Descripcion de ejemplo",
   platforms: ["PC", "Android"],
 };
 const vgDescr = {
+  id: "7bd46617-d105-457b-a88c-66c344597298",
   name: "Cristian GAME",
   description: null,
   platforms: ["PC", "Android"],
 };
 const vgPlat = {
+  id: "7bd46617-d105-457b-a88c-66c344597298",
   name: "Cristian GAME",
   description: "Descripcion de ejemplo",
   platforms: null,
 };
 
 describe("***MODELO VIDEOGAME***", () => {
-  before(() =>
-    conn.authenticate().catch((err) => {
-      console.error("Unable to connect to the database:", err);
-    })
-  );
   describe("Validators", () => {
-    beforeEach(() => Videogame.sync({ force: true }));
+    describe("id", () => {
+      it("deberia mostrar un error si el id es null", (done) => {
+        Videogame.create(vgId)
+          .then(() => done(new Error("Se requiere un id valido")))
+          .catch(() => done());
+      });
+      it("debería funcionar cuando es un name valido", () => {
+        Videogame.create(vgCompl);
+      });
+    });
     describe("name", () => {
       it("deberia mostrar un error si name es null", (done) => {
         Videogame.create(vgName)
