@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getDetail } from "../actions";
+import { getDetail, vaciarDetail } from "../actions";
 import "../css/Detail.css";
 
 export default function Detail() {
@@ -11,6 +11,9 @@ export default function Detail() {
 
   useEffect(() => {
     dispatch(getDetail(id));
+    return function () {
+      dispatch(vaciarDetail());
+    };
   }, [dispatch, id]);
 
   const myVideogame = useSelector((state) => state.detail);

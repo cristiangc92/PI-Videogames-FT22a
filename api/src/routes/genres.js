@@ -12,4 +12,17 @@ router.get("/", async (req, res) => {
   }
 });
 
+// ESTO FUE PARTE DE LA DEFENZA DE MI PROYECTO
+// router.post("/", async (req, res) => {
+//   try {
+//     const { name } = req.body;
+//     const nuevoGenero = await Genre.create({
+//       name: name,
+//     });
+//     res.status(200).send(nuevoGenero);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
 module.exports = router;

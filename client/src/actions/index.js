@@ -71,11 +71,15 @@ export function getGenres() {
 
 export function postVideogame(payload) {
   return async function (dispatch) {
-    const response = await axios.post(
-      "http://localhost:3001/videogame",
-      payload
-    );
-    return response;
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/videogame",
+        payload
+      );
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
 
@@ -90,5 +94,11 @@ export function getDetail(id) {
     } catch (error) {
       console.log(error);
     }
+  };
+}
+
+export function vaciarDetail() {
+  return {
+    type: "VACIAR_DETAIL",
   };
 }

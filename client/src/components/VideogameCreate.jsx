@@ -1,13 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { postVideogame, getGenres } from "../actions";
+import { postVideogame, getGenres, getVideogames } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
 import "../css/VideogameCreate.css";
 
 export default function VideogameCreate() {
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.genres);
+  const videogames = useSelector((state) => state.videogames);
+  console.log(genres);
 
   const platformsArr = [
     "PC",
@@ -82,21 +84,31 @@ export default function VideogameCreate() {
   function handleSelect(e) {
     setInput({
       ...input,
-      genres: [...input.genres, e.target.value],
+      genres: input.genres.includes(e.target.value)
+        ? input.genres
+        : [...input.genres, e.target.value],
     });
   }
 
   function handleSelect2(e) {
     setInput({
       ...input,
-      platforms: [...input.platforms, e.target.value],
+      platforms: input.platforms.includes(e.target.value)
+        ? input.platforms
+        : [...input.platforms, e.target.value],
     });
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (input.name.trim() === "" || input.name.length < 1) {
+    if (input.name.trim() === "") {
       return alert("Debe ingresar un nombre");
+    } else if (
+      videogames.find(
+        (e) => e.name.toLowerCase().trim() === input.name.toLowerCase().trim()
+      )
+    ) {
+      return alert(`El nombre ${input.name} ya existe`);
     } else if (input.description.trim() === "") {
       return alert("Descripción requerida");
     } else if (input.released.trim() === "") {
@@ -145,6 +157,7 @@ export default function VideogameCreate() {
 
   useEffect(() => {
     dispatch(getGenres());
+    dispatch(getVideogames());
   }, [dispatch]);
 
   return (

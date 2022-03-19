@@ -11,8 +11,7 @@ function rootReducer(state = initialState, action) {
     case "GET_VIDEOGAMES":
       return {
         ...state,
-        videogames: action.payload, //En mi estado videogames que al principio es un estado vacio
-        //le mando todo lo que traiga la accion "GET_VIDEOGAMES"
+        videogames: action.payload,
         allVideogames: action.payload,
       };
 
@@ -112,6 +111,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         detail: action.payload,
+      };
+
+    case "VACIAR_DETAIL":
+      return {
+        ...state,
+        detail: [],
       };
 
     default:

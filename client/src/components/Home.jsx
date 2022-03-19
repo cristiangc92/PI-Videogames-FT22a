@@ -16,13 +16,13 @@ import loadingBar from "../css/loading-35.gif";
 import "../css/Home.css";
 
 export default function Home() {
-  const dispatch = useDispatch(); //Esto es para usar esa constante e ir despachando las acciones. Esto es HOOKS.
-  const allVideogames = useSelector((state) => state.videogames); //Me trae del REDUCER el estado videogames(que tiene todos los videojuegos)
+  const dispatch = useDispatch();
+  const allVideogames = useSelector((state) => state.videogames);
 
-  //Defino estados locales entonces tengo que usar useState
+  //Defino estados locales
   const [, /*orden*/ setOrden] = useState("");
-  const [currentPage, setCurrentPage] = useState(1); //Lo seteo en 1 porque arranco de la pagina 1.
-  const [videogamesPerPage /*setVideogamesPerPage*/] = useState(15); //15 videojuegos por pagina
+  const [currentPage, setCurrentPage] = useState(1);
+  const [videogamesPerPage /*setVideogamesPerPage*/] = useState(15);
 
   const indexOfLastVideogame = currentPage * videogamesPerPage; // 15
   const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage; // 0
@@ -31,7 +31,7 @@ export default function Home() {
     indexOfFirstVideogame,
     indexOfLastVideogame
   );
-  //Este constante me ayuda al renderizado. En este componente voy a tomar el paginado.
+
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -39,20 +39,17 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  //Voy a traer del estado los videojuegos cuando el componente se monta.
-  //Me va llenando el estado cuando se monta el componente.
-  //Esto es un componentDidMount
   useEffect(() => {
     dispatch(getVideogames())
-      .then(() => {
+      .then((response) => {
         setLoading(false);
       })
       .catch((error) => setError(error.message));
   }, [dispatch]);
 
   function handleClick(e) {
-    e.preventDefault(); //Preventivo. Para que no se recargue la pagina. Cada vez que recargamos, los estados de Redux se vuelven a cargar si tenemos un useEffect. Y si dependiamos de algo ya se fue cuando recargar los estados.
-    dispatch(getVideogames()); //Resetea por si se buguea.
+    e.preventDefault();
+    dispatch(getVideogames());
     setCurrentPage(1);
   }
 
