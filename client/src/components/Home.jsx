@@ -197,7 +197,7 @@ export default function Home() {
             })
           ) : (
             <div>
-              <h1 className="error">ERROR 404! No hay resultados.</h1>
+              <h1 className="error">No hay resultados!</h1>
             </div>
           )}
         </div>
