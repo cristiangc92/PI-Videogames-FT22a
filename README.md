@@ -1,7 +1,7 @@
 # Videogame - App
 
 <p align="center">
-  <img height="500" src="./videogame2.png" />
+  <img height="500" src="./readme.png" />
 </p>
 
 # Proyecto (Single Page Application) Videogame App #
